@@ -36,51 +36,6 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 
     this.props.onLoadArticles();
 
-    window.onload_sss = function(){
-
-      $(document).on('click', '.article-list-item',  function(e){
-        if ($(this).hasClass('selected')) {
-          $(this).removeClass('selected');
-        } else {
-          $(this).parent().find('.selected').removeClass('selected');
-          $(this).addClass('selected');
-          // console.log(111, $(this));
-          $('.url-input').val($(this).attr('url'));
-          var event = new Event('input', { bubbles: true });
-          $('.url-input')[0].dispatchEvent(event);
-          $('.url-submit').click();
-          // dispatch(infoLoaded($(this).data('info'), $(this).attr('url')));
-        }
-
-      });
-
-      $.ajax({
-        url: Config.api + '/articles',
-        success:function(ret){
-          
-          var item = $('<div class="article-list-item"><h5 class="article-title"></h5><p class="article-url"></p></div>');
-          var root = $('.article-list-view');
-
-          // var tr = $('<tr class="table-item"><td class="name"></td><td class="entity"></td></tr>');
-          // var table = $('<div class="article-list-item"><h5 class="article-title"></h5><p class="article-url"></p></div>');
-
-          console.log('ret', ret);
-          // root.empty();
-          for (var i=0; i<ret.length; i++) {
-            var a = item.clone();
-            a.find('.article-title').text(ret[i]['title']);
-            a.find('.article-url').text(ret[i]['url']);
-            a.attr('url', ret[i]['url']);
-            a.data('info',  {'text':ret[i]['text'], 'tags':ret[i]['tags']});
-            root.append(a);
-          }
-        },
-        error:function(e){
-          alert(e);
-        }
-      });
-    };
-
   }
 
   onChangeFocusItem() {
@@ -207,4 +162,3 @@ const mapStateToProps = createStructuredSelector({
 
 // Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
-
