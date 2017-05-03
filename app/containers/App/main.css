@@ -1,0 +1,133 @@
+html, body {
+    line-height: 160%;
+    font-size: 12px;
+}
+
+h5,p {
+    margin: 0px;
+    padding: 0px;
+}
+
+.main {
+  position:relative;
+  width: 96%;
+  height: -webkit-calc(100% - #{$navbar-height});
+  height: -moz-calc(100% - #{$navbar-height});
+  height: calc(100% - #{$navbar-height});
+}
+
+.left-view{
+    /*float: left;*/
+    z-index: 1;
+    width: 25%;
+    margin: 30px 0px 0px 20px;
+    /*width: 200px / 960px * 100%;*/
+    box-sizing: border-box;
+    height: 100%;
+    overflow: hidden;
+}
+
+.left-view .article-list-view{
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.entity-viewer{
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.left-view .article-list-item{
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+}
+
+.left-view .article-list-item:hover{
+    background-color:#94DCEB;
+}
+
+.left-view .article-list-item.selected{
+    background-color:#56C5FE;
+}
+
+.left-view .article-list-item:last-child{
+    border-bottom: 0px;
+}
+
+.main-view{
+    position: absolute;
+    top:0px;
+    right:0px;
+    z-index: 2;
+    float: right;
+    /*width: 758px / 960px * 100%;*/
+    width: 70%;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.main-view .url-input {
+    width:85%;
+    float: left;
+    height: 36px;
+}
+
+.main-view .url-submit.btn {
+    width: 10%;
+    float: right;
+    padding: 5px;
+    margin-left: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.main-view .view-form{
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+
+.showTags .tag{
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-left: 0px;
+    margin-bottom: 15px;
+}
+
+.showTags .tag:last-child{
+    border-left: 1px solid #ccc;
+}
+
+.entity-table{
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+table{ 
+    table-layout:fixed; 
+    empty-cells:show; 
+    border-collapse: collapse; 
+} 
+
+td{ 
+    height:30px; 
+} 
+
+.table{ 
+    text-align: center;
+    border:1px solid #cad9ea; 
+    color:#666; 
+} 
+.table th { 
+    background-repeat:repeat-x; 
+    height:30px; 
+} 
+.table td,.table th{ 
+    border:1px solid #cad9ea; 
+    padding:0 1em 0; 
+} 
+.table tr.alter{ 
+    background-color:#f5fafe; 
+} 
