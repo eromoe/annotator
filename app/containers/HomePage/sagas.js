@@ -16,6 +16,7 @@ import { makeSelectUrl } from 'containers/HomePage/selectors';
 export function* getInfo() {
   // Select url from store
   const url = yield select(makeSelectUrl());
+  console.log('url:', url);
   const requestURL = `${Config.api}/ent?url=${url}`;
 
   try {

@@ -30,6 +30,7 @@ const initialState = fromJS({
   info: {
     text: NaN,
     tags: NaN,
+    tags2: NaN,
   },
 });
 

@@ -10,9 +10,11 @@ function makeColor(colorNum, colors) {
   return (colorNum * (360 / colors)) % 360;
 }
 
-function TaggedText({ loading, error, info }) {
+function TaggedText({ loading, error, text, tags }) {
   console.log('error:', error);
-  console.log('info:', info);
+  // console.log('text:', text);
+  // console.log('tags:', tags);
+
   if (loading) {
     return <Wrapper component={LoadingIndicator} />;
   }
@@ -23,6 +25,8 @@ function TaggedText({ loading, error, info }) {
   let items = [];
   let trs = [];
 
+  // if (text)
+  //   text.replace('\n', '\\n');
 
   if (error !== false) {
     // error is object , would cause `Invariant Violation: Objects are not valid as a React child`
@@ -31,9 +35,9 @@ function TaggedText({ loading, error, info }) {
   }
 
   // If we have items, render them
-  if (info.text && info.tags) {
-    for (const [index, item] of info.tags.entries()) {
-      console.log('item:', item);
+  if (text && tags) {
+    for (const [index, item] of tags.entries()) {
+      // console.log('item:', item);
       const tag = item[0];
       const value = item[1];
       const offset = item[2];
@@ -48,25 +52,26 @@ function TaggedText({ loading, error, info }) {
         <td className="offset">({offset[0]}, {offset[1]})</td>
       </tr>
       );
+
       if (offset[0] > lastIdx) {
-        items.push(info.text.slice(lastIdx, offset[0]));
-        items.push(<span className={tag} style={{ 'backgroundColor': Colors[showTags.indexOf(tag)] }}>{info.text.slice(offset[0], offset[1])}</span>);
+        items.push(text.slice(lastIdx, offset[0]));
+        items.push(<span className={tag} style={{ 'backgroundColor': Colors[showTags.indexOf(tag)] }}>{text.slice(offset[0], offset[1])}</span>);
         // content += info.text.slice(lastIdx, offset[0]);
         // content += <Mark className={tag}>{info.text.slice(offset[0], offset[1])}</Mark>;
         lastIdx = offset[1];
       } else {
         if (offset[1] > lastIdx) {
-          items.push(<span className={tag} style={{ 'backgroundColor': Colors[showTags.indexOf(tag)] }}>{info.text.slice(lastIdx, offset[1])}</span>);
+          items.push(<span className={tag} style={{ 'backgroundColor': Colors[showTags.indexOf(tag)] }}>{text.slice(lastIdx, offset[1])}</span>);
           lastIdx = offset[1];
         } else {
           const a = 1;
         }
       }
-
       
     }
 
-    items.push(info.text.slice(lastIdx, ));
+    items.push(text.slice(lastIdx, ));
+
     // content += info.text.slice(lastIdx, );
 
     // showTags.length
@@ -76,7 +81,6 @@ function TaggedText({ loading, error, info }) {
     content = 'empty';
   }
 
-  console.log(items);
 
   return (
     <div>
@@ -107,7 +111,8 @@ function TaggedText({ loading, error, info }) {
 TaggedText.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.any,
-  info: PropTypes.any,
+  text: PropTypes.string,
+  tags: PropTypes.array,
 };
 
 

@@ -44,13 +44,24 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 
   render() {
     const { loading, error, info, articles } = this.props;
+    const {text, tags, tags2 } = info;
     const urlInfoProps = {
       loading,
       error,
-      info,
+      text,
+      tags,
     };
+
+    const urlInfoProps2 = {
+      loading,
+      error,
+      text,
+      tags: tags2,
+    };
+
     console.log('home articles:', articles);
     console.log('home info:', info);
+    
 
     return (
 
@@ -94,9 +105,16 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                   </label>
                   <button className="waves-effect waves-light url-submit btn"  type="submit">提交</button>
                 </Form>
-                <TaggedText {...urlInfoProps} />
+                <div>
+                  <h3>基础实体</h3>
+                  <TaggedText {...urlInfoProps} />
+                </div>
+                <hr />
+                <div>
+                  <h3>筛选后的概念实体</h3>
+                  <TaggedText {...urlInfoProps2} />
+                </div>
               </Section>
-            
             </div>
           </article>
         </div>
@@ -141,8 +159,8 @@ export function mapDispatchToProps(dispatch) {
     onRenderArticleInfo: (article) => {
       // home's action, so here, article map to info is in home's scope, so App.selectors.makeSelectInfo can not get it
       dispatch(renderTaggedText(article));
-      // console.log(article.url);
-      // dispatch(changeUrl(article.url));
+      console.log(article.url);
+      dispatch(changeUrl(article.url));
       // dispatch(loadUrl());
     },
     onSubmitForm: (evt) => {
