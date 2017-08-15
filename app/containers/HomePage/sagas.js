@@ -4,7 +4,7 @@
 
 import { take, call, put, select, cancel, takeLatest } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { LOAD_URL, LOAD_ARTICLES } from 'containers/App/constants';
+import { LOAD_INFO_BY_URL, LOAD_ARTICLES } from 'containers/App/constants';
 import { infoLoaded, infoLoadingError, articlesLoaded, articlesLoadingError } from 'containers/App/actions';
 import Config from 'config';
 import request from 'utils/request';
@@ -45,12 +45,12 @@ export function* getArticles() {
  * Root saga manages watcher lifecycle
  */
 export function* myData() {
-  // Watches for LOAD_URL actions and calls getRepos when one comes in.
+  // Watches for LOAD_INFO_BY_URL actions and calls getRepos when one comes in.
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
 
-  // const watcher = yield takeLatest(LOAD_URL, getInfo);
-  yield takeLatest(LOAD_URL, getInfo);
+  // const watcher = yield takeLatest(LOAD_INFO_BY_URL, getInfo);
+  yield takeLatest(LOAD_INFO_BY_URL, getInfo);
   yield takeLatest(LOAD_ARTICLES, getArticles);
 
   // // Suspend execution until location changes

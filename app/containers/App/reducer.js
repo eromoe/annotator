@@ -13,9 +13,9 @@
 import { fromJS } from 'immutable';
 
 import {
-  LOAD_URL_SUCCESS,
-  LOAD_URL,
-  LOAD_URL_ERROR,
+  LOAD_INFO_SUCCESS,
+  LOAD_INFO_BY_URL,
+  LOAD_INFO_ERROR,
   LOAD_ARTICLES,
   LOAD_ARTICLES_SUCCESS,
   RENDER_TAGGED_TEXT,
@@ -49,19 +49,19 @@ function appReducer(state = initialState, action) {
       return state
         .set('info', action.info)
         .set('currentUrl', action.info.url);
-    case LOAD_URL:
+    case LOAD_INFO_BY_URL:
       return state
         .set('loading', true)
         .set('error', false)
         .set('info', false);
         // .setIn(['info', 'text'], 'empty')
         // .setIn(['info', 'tags'], [])
-    case LOAD_URL_SUCCESS:
+    case LOAD_INFO_SUCCESS:
       return state
         .set('info', action.info)
         .set('loading', false)
         .set('currentUrl', action.url);
-    case LOAD_URL_ERROR:
+    case LOAD_INFO_ERROR:
       return state
         .set('error', action.error)
         .set('loading', false);

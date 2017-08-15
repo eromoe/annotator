@@ -13,7 +13,6 @@ import { fromJS } from 'immutable';
 
 import {
   CHANGE_URL,
-  RENDER_TAGGED_TEXT,
 } from './constants';
 
 // The initial state of the App
@@ -23,6 +22,7 @@ const initialState = fromJS({
 });
 
 function homeReducer(state = initialState, action) {
+  console.log('anno homeReducer', state);
   switch (action.type) {
     case CHANGE_URL:
       return state

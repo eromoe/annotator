@@ -9,9 +9,9 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const LOAD_URL = 'boilerplate/App/LOAD_URL';
-export const LOAD_URL_SUCCESS = 'boilerplate/App/LOAD_URL_SUCCESS';
-export const LOAD_URL_ERROR = 'boilerplate/App/LOAD_URL_ERROR';
+export const LOAD_INFO_BY_URL = 'boilerplate/App/LOAD_INFO_BY_URL';
+export const LOAD_INFO_SUCCESS = 'boilerplate/App/LOAD_INFO_SUCCESS';
+export const LOAD_INFO_ERROR = 'boilerplate/App/LOAD_INFO_ERROR';
 export const DEFAULT_LOCALE = 'en';
 
 export const LOAD_ARTICLES = 'boilerplate/App/LOAD_ARTICLES';

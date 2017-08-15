@@ -24,11 +24,22 @@ module.exports = (options) => ({
       // they will be a part of our compilation either way.
       // So, no need for ExtractTextPlugin here.
       test: /\.css$/,
-      include: [/node_modules/, /main.css/],
-      loaders: ['style-loader', 'css-loader'],
+      include: [/node_modules/, /\.css$/],
+      loaders: ['style-loader', 'css-loader', 'resolve-url-loader'],
     }, {
       test: /\.scss$/,
-      loader: 'style-loader!css-loader!sass-loader!resolve-url-loader!sass-loader?sourceMap',
+      loaders: [
+        'style-loader',
+        'css-loader',
+        'resolve-url-loader',
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true,
+            includePaths: [path.resolve(process.cwd(), 'node_modules')],
+          },
+        },
+      ],
     }, {
       test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loader: 'url-loader?limit=10000&mimetype=application/font-woff',

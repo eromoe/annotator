@@ -16,9 +16,9 @@
  */
 
 import {
-  LOAD_URL,
-  LOAD_URL_SUCCESS,
-  LOAD_URL_ERROR,
+  LOAD_INFO_BY_URL,
+  LOAD_INFO_SUCCESS,
+  LOAD_INFO_ERROR,
   LOAD_ARTICLES,
   LOAD_ARTICLES_SUCCESS,
   LOAD_ARTICLES_ERROR,
@@ -28,11 +28,11 @@ import {
 /**
  * Load the url info, this action starts the request saga
  *
- * @return {object} An action object with a type of LOAD_URL
+ * @return {object} An action object with a type of LOAD_INFO_BY_URL
  */
-export function loadUrl() {
+export function loadInfoByUrl() {
   return {
-    type: LOAD_URL,
+    type: LOAD_INFO_BY_URL,
   };
 }
 
@@ -42,11 +42,11 @@ export function loadUrl() {
  * @param  {array} info The info data
  * @param  {string} url The current url
  *
- * @return {object}      An action object with a type of LOAD_URL_SUCCESS passing the info
+ * @return {object}      An action object with a type of LOAD_INFO_SUCCESS passing the info
  */
 export function infoLoaded(info, url) {
   return {
-    type: LOAD_URL_SUCCESS,
+    type: LOAD_INFO_SUCCESS,
     info,
     url,
   };
@@ -57,11 +57,11 @@ export function infoLoaded(info, url) {
  *
  * @param  {object} error The error
  *
- * @return {object}       An action object with a type of LOAD_URL_ERROR passing the error
+ * @return {object}       An action object with a type of LOAD_INFO_ERROR passing the error
  */
 export function infoLoadingError(error) {
   return {
-    type: LOAD_URL_ERROR,
+    type: LOAD_INFO_ERROR,
     error,
   };
 }
@@ -93,5 +93,4 @@ export function renderTaggedText(info) {
     info,
   };
 }
-
 

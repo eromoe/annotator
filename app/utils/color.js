@@ -21,11 +21,4 @@ const Colors = [
   '#555555',
   ]
 
-
-
-
-
-
-
-
 export default Colors;

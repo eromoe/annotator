@@ -1,8 +1,12 @@
-// @import './color';
+// My main Sass file.
+$mdc-theme-primary: #9c27b0;
+$mdc-theme-accent: #76ff03;
+$mdc-theme-background: #fff;
+
+@import "material-components-web/material-components-web";
+@import "./_color";
 
 $navbar-height: 64px;
-@import '~materialize-css/sass/ghpages-materialize.scss';
-
 $main-bg-color: #f1f2f0;
 $accent-blue: #37bbe4;
 $accent-gray: #e1e0dd;
@@ -31,213 +35,96 @@ html, body {
   color: $accent-black;
   font-family: 'Raleway', sans-serif;
   margin: 0px;
-  overflow: hidden;
   line-height: 160%;
   height: 100%;
-
 }
 
-body>#root{
-  height: 100%;
-  width: 100%;
+#react-root{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    min-height: 100%;
 }
 
-.app-container{
-  height: 100%;
+#react-root > [data-reactroot] {
+    display: flex;
+    box-sizing: border-box;
+    flex: 1;
 }
 
-.left{
-  float: left;
+#app {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    flex-direction: column; // 不加 title 的位置就错了
 }
 
-.hide{
-  display: none;
-}
-
-.navbar{
-  height:40px;
-  width: 100%;
-  padding: 10px;
-  border-bottom: $border_grey;
-}
-
-nav{
-  background-color:$green;
-}
 
 .main {
-  position:relative;
+  // position:relative;
   width: 100%;
-  height: -webkit-calc(100% - #{$navbar-height});
-  height: -moz-calc(100% - #{$navbar-height});
-  height: calc(100% - #{$navbar-height});
+  // height: -webkit-calc(100% - #{$navbar-height});
+  // height: -moz-calc(100% - #{$navbar-height});
+  // height: calc(100% - #{$navbar-height});
 
   .left-view{
     // float: left;
-    position: absolute;
+    // position: absolute;
     z-index: 1;
     width: 200px / 960px * 100%;
     // height: -webkit-calc(100% - 20px);
     // height: -moz-calc(100% - 20px);
     // height: calc(100% - 20px);
     box-sizing: border-box;
-    height: 100%;
+    // height: 100%;
     padding-top: $tree_node_gap;
     background-color: rgba(0,0,0,.05);
     overflow: auto;
   }
 
   .main-view{
-    position: absolute;
+    // position: absolute;
     top:0px;
     right:0px;
     z-index: 2;
     border-left: $border_grey;
     padding-top: $tree_node_gap;
-    float: right;
+    // float: right;
     width: 758px / 960px * 100%;
     box-sizing: border-box;
-    height: 100%;
+    // height: 100%;
   }
 
 }
 
 
-.tree-root{
-  position: absolute;
-  left: 0;
-  right: 0;
+.annotator {
+  line-height: 230%;
 
-  .tree-node{
-    width: 200px;
-    margin: $tree_node_gap 0 $tree_node_gap 20px;
-
-    // .tree-node-children {
-    //   padding-top: $tree_node_gap;
-    // }
-    // .tree-node-info{
-    //   display: inline-block;
-    //   position: relative;
-    //   padding: 5px;
-    //   border: $border_grey;
-    //   border-radius: 3px;
-    //   background: #62C3EE;
-    //   width: 70px;
-    // }
-
-    // for icon
-    // i{
-    //   padding:0 5px;
-    // }
-
-    .fa{
-      padding: 0px 5px;
-    }
-
-    .tree-node-ico{
-    }
-
-    .tree-node-info{
-      color: $darkgrey;
-    }
-
-    .tree-node-info.current{
-      color: $green;
-    }
-
-    .tree-node-info:hover{
-      color: $green;
-    }
-
-    .tree-node-label{
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
-
+  .entities {
+      line-height: 2;
   }
 
-}
-
-
-.explorer-container{
-
-  padding: 0px 30px;
-
-  .path-box{
-    // padding :15px;
-
-    .current-path-input{
-      width: 80%;
-      font-size: 26px;
-      padding-left: 5px;
-      margin-right: 10px;
-    }
-
-    // .go-btn{
-
-    // }
-
-  }
-}
-
-.file-list-container{
-
-  .file-list-item{
-    display: inline-block;
-    width: 100px;
-    max-height: 100px;
-    margin-bottom: 9px;
-    margin-right: 9px;
-    padding: 10px 0;
-    color: $green;
-    text-align: center;
-    border: 1px solid transparent;
-
-    .file-name{
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
+  [data-entity] {
+      padding: 0.25em 0.35em;
+      margin: 0px 0.25em;
+      line-height: 1;
+      display: inline-block;
+      border-radius: 0.25em;
+      border: 1px solid;
   }
 
-  .file-list-item:hover {
-    @extend .green, .lighten-5;
-    border: 1px solid color('green', 'lighten-2');
-
-    // .file-name {
-    //     overflow: visible;
-    //     white-space: normal;
-    // }
-
+  [data-entity] .entity-label {
+      box-sizing: border-box;
+      //  content: attr(data-entity);
+      font-size: 0.6em;
+      line-height: 1;
+      padding: 0.35em;
+      border-radius: 0.35em;
+      text-transform: uppercase;
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0px 0px 0.1rem 0.5rem;
   }
 
-  .file-list-item.selected{
-    @extend .green, .lighten-4;
-    border: 1px solid color('green', 'lighten-1');
-  }
-
-}
-
-
-
-footer {
-  font-size: 0.75em;
-  text-align: center;
-  padding-top: 10em;
-
-  a {
-    text-decoration: none;
-    color: inherit;
-
-    &:hover {
-      color: $accent-blue;
-    }
-  }
-
-  #heart{
-    color: $accent-red;
-  }
 }

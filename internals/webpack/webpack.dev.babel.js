@@ -85,6 +85,7 @@ function dependencyHandlers() {
   }
 
   const dllPath = path.resolve(process.cwd(), dllPlugin.path || 'node_modules/react-boilerplate-dlls');
+  console.log('dllPath', dllPath)
 
   /**
    * If DLLs aren't explicitly defined, we assume all production dependencies listed in package.json

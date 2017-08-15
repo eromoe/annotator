@@ -8,6 +8,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { Button, Input } from 'react-materialize';
 import {
   Card,
   CardHeader,
@@ -16,11 +17,13 @@ import {
   DrawerSpacer,
   Navigation,
   Icon,
-  Button,
 } from 'react-mdc-web';
 import { makeSelectInfo, makeSelectLoading, makeSelectError, makeSelectArticles } from 'containers/App/selectors';
 import TaggedText from 'components/TaggedText';
-// import ArticleShortList from 'components/ArticleList';
+import ArticleShortList from 'components/ArticleList';
+
+
+
 import Config from 'config';
 
 // import { Input } from './Elements';
@@ -98,8 +101,8 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 
 
         <div className="left-view">
-            {/* <ArticleShortList articles={articles} clickArticle={this.props.onRenderArticleInfo}  /> */}
-             <div className="article-list-view">
+            <ArticleShortList articles={articles} clickArticle={this.props.onRenderArticleInfo}  />
+            {/* <div className="article-list-view">
             {
               articles && articles.map((article) => (
                 <div className="article-list-item" onClick={() => this.props.onRenderArticleInfo(article)}>
@@ -109,7 +112,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
               )
               )
             }
-          </div>
+          </div> */}
         </div>
         <div className="main-view">
           <article className="entity-viewer">
@@ -128,7 +131,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
               <section>
                 <form className="view-form" onSubmit={this.props.onSubmitform}>
                   <label htmlFor="UrlInput">
-                    <input
+                    <Input
                       id="UrlInput"
                       className="url-input"
                       type="text"

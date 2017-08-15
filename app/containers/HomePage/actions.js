@@ -17,7 +17,6 @@
 
 import {
   CHANGE_URL,
-  RENDER_TAGGED_TEXT,
 } from './constants';
 
 /**
@@ -33,5 +32,3 @@ export function changeUrl(url) {
     url,
   };
 }
-
-
