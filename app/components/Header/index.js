@@ -17,6 +17,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
           </ToolbarSection>
         </ToolbarRow>
       </Toolbar>
+
     );
   }
 }

@@ -15,6 +15,7 @@ import {
 // The initial state of the App
 const initialState = fromJS({
   documents: [],
+  editmode: false,
   editor: Raw.deserialize(defaultdata, { terse: true }),
 });
 
@@ -32,6 +33,8 @@ const sentenceToNode = ({ text, tags }) => {
 
 const annotatorReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'SWITCH_DOCUMENT_EDITMODE':
+      return state.set('editmode', action.editmode)
     case 'EDITOR_STATE':
       return state.set('editor', action.editor)
     case 'MARK':
@@ -43,6 +46,5 @@ const annotatorReducer = (state = initialState, action) => {
       return state
   }
 }
-
 
 export default annotatorReducer;

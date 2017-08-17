@@ -1,16 +1,12 @@
 {
-  "name": "react-boilerplate",
-  "version": "3.4.0",
-  "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
-  },
+  "name": "react-annotator",
+  "version": "0.0.2",
+  "description": "NLP annotator",
   "engines": {
     "npm": ">=3",
     "node": ">=5"
   },
-  "author": "Max Stoiber",
+  "author": "Mithril|eromoe",
   "license": "MIT",
   "scripts": {
     "analyze:clean": "rimraf stats.json",
@@ -44,10 +40,6 @@
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
-  "lint-staged": {
-    "*.js": "lint:eslint"
-  },
-  "pre-commit": "lint:staged",
   "babel": {
     "presets": [
       [
@@ -82,7 +74,6 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": "airbnb",
     "env": {
       "browser": true,
       "node": true,
@@ -222,14 +213,14 @@
     "lodash": "^4.17.4",
     "material-components-web": "^0.17.0",
     "minimist": "1.2.0",
-    "react-mdc-web": "^0.14.0",
-    "minimist": "1.2.0",
     "react": "15.4.1",
     "react-dom": "15.4.1",
     "react-helmet": "3.2.2",
     "react-intl": "2.1.5",
+    "react-mdc-web": "^0.14.0",
     "react-redux": "4.4.6",
     "react-router": "3.0.0",
+    "react-router-dom": "^4.1.2",
     "react-router-redux": "4.0.6",
     "react-router-scroll": "0.4.1",
     "redux": "3.6.0",

@@ -9,7 +9,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
-
+import NavLink from 'components/NavLink'
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import withProgressBar from 'components/ProgressBar';
@@ -40,6 +40,9 @@ import 'styles/main.scss';
 // `;
 
 export function App(props) {
+
+  console.log('props.location.pathname', props.location.pathname);
+
   return (
     <div id="app">
       <Helmet
@@ -68,25 +71,24 @@ export function App(props) {
           </DrawerSpacer>
           <Navigation>
 
-            <Link to={'/annotator'} selected><Icon name='insert_chart'/>Articles</Link>
-            <Link to={'/'}><Icon name='library_books'/>Viewer</Link>
-            <Link to={'#'}><Icon name='description'/>Viewer</Link>
-            <Link to={'#'}><Icon name='art_track'/>Viewer</Link>
-            <Link to={'#'}><Icon name='local_library'/>Viewer</Link>
-            <Link to={'#'}><Icon name='developer_board'/>Viewer</Link>
-            <Link to={'#'}><Icon name='local_offer'/>Viewer</Link>
-            <Link to={'#'}><Icon name='local_library'/>Viewer</Link>
+            <NavLink to={'/annotator'}><Icon name='insert_chart'/>Articles</NavLink>
+            <NavLink to={'/'}><Icon name='library_books'/>Viewer</NavLink>
+            <NavLink to={'/annotator'}><Icon name='description'/>Annotator</NavLink>
+            <NavLink to={'#'}><Icon name='art_track'/>Viewer</NavLink>
+            <NavLink to={'#'}><Icon name='local_library'/>Viewer</NavLink>
+            <NavLink to={'#'}><Icon name='developer_board'/>Viewer</NavLink>
+            <NavLink to={'#'}><Icon name='local_offer'/>Viewer</NavLink>
+            <NavLink to={'#'}><Icon name='local_library'/>Viewer</NavLink>
 
-
-            <Link to={'#'}><Icon name='attachment'/>Marks</Link>
-            <Link to={'#'}><Icon name='format_list_bulleted'/>Marks</Link>
+            <NavLink to={'#'}><Icon name='attachment'/>Marks</NavLink>
+            <NavLink to={'#'}><Icon name='format_list_bulleted'/>Marks</NavLink>
           </Navigation>
           <DrawerSpacer>
             Test
           </DrawerSpacer>
           <Navigation>
-            <Link to={'#'}><Icon name='featured_play_list'/>Viewer</Link>
-            <Link to={'#'}><Icon name='format_list_bulleted'/>Crf</Link>
+            <NavLink to={'#'}><Icon name='featured_play_list'/>Viewer</NavLink>
+            <NavLink to={'#'}><Icon name='format_list_bulleted'/>Crf</NavLink>
           </Navigation>
         </Drawer>
 
@@ -94,8 +96,6 @@ export function App(props) {
           "padding": "16px",
           "flex": "1"
         }}>
-
-
           {React.Children.toArray(props.children)}
         </div>
 

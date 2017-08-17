@@ -59,6 +59,42 @@ html, body {
     flex-direction: column; // 不加 title 的位置就错了
 }
 
+.align-axis{
+
+  display: flex;
+
+  [align="right"]{
+    margin-left: auto;
+  }
+
+  [align="left"]{
+    margin-right: auto;
+  }
+
+  [align="center"]{
+    align-self: center;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .right{
+    margin-left: auto;
+  }
+
+  .left{
+    margin-right: auto;
+  }
+
+  .center{
+    align-self: center;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+}
+
+
+
 
 .main {
   // position:relative;
@@ -101,6 +137,25 @@ html, body {
 .annotator {
   line-height: 230%;
 
+  .panel{
+    padding: 20px 10px ;
+  }
+
+  .edit-tags-btn{
+    padding: 0px 10px;
+    align-self: center;
+  }
+
+  .edit-tags-btn:hover{
+    opacity: 0.9;
+    cursor: pointer;
+  }
+
+  .edit-tags-btn:active{
+    opacity: 0.6;
+    margin-top: 3px;
+  }
+
   .entities {
       line-height: 2;
   }
@@ -125,6 +180,25 @@ html, body {
       display: inline-block;
       vertical-align: middle;
       margin: 0px 0px 0.1rem 0.5rem;
+  }
+
+}
+
+.dialog{
+  .mdc-dialog__surface{
+    max-height: calc(100% - 120px);
+  }
+
+  .mdc-layout-grid{
+    padding: 0px;
+  }
+
+  .dialog-body{
+    max-height:100% !important;
+  }
+
+  .tag-edit-line{
+    height: auto !important;
   }
 
 }
