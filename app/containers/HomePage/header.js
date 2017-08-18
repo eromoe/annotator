@@ -13,7 +13,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
     return (
       <Toolbar>
         <ToolbarRow>
-          <ToolbarSection align="center">
+          <ToolbarSection>
             <ToolbarTitle>Textminer</ToolbarTitle>
           </ToolbarSection>
         </ToolbarRow>

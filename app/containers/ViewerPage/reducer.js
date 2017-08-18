@@ -12,21 +12,21 @@
 import { fromJS } from 'immutable';
 
 import {
-  REQUEST_CORPUSES,
-  REQUEST_CORPUSES_FAILED,
-  RECEIVE_CORPUSES,
-  // SHOW_DOCUMENTS_IN_CORPUS,
+  CHANGE_URL,
 } from './constants';
 
-
+// The initial state of the App
 const initialState = fromJS({
-  corpusList:[],
+  url: '',
+  info: false,
 });
 
 function homeReducer(state = initialState, action) {
+  console.log('anno homeReducer', state);
   switch (action.type) {
-    case RECEIVE_CORPUSES:
-      return state.set("corpuses", action.corpuses);
+    case CHANGE_URL:
+      return state
+        .set('url', action.url);
     default:
       return state;
   }

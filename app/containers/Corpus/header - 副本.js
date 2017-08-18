@@ -5,6 +5,7 @@ import {
   ToolbarRow,
   ToolbarSection,
   ToolbarTitle,
+  Icon,
 } from 'react-mdc-web';
 
 
@@ -13,8 +14,11 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
     return (
       <Toolbar>
         <ToolbarRow>
-          <ToolbarSection align="center">
-            <ToolbarTitle>Textminer</ToolbarTitle>
+          <ToolbarSection align="left">
+            <Icon name="arrow_back" />
+          </ToolbarSection>
+          <ToolbarSection>
+            <ToolbarTitle>Corpus</ToolbarTitle>
           </ToolbarSection>
         </ToolbarRow>
       </Toolbar>

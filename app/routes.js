@@ -12,6 +12,25 @@ const loadModule = (cb) => (componentModule) => {
   cb(null, componentModule.default);
 };
 
+// not working
+// const getComponentby = (componentName, reducerMapName) => (nextState, cb) => {
+//   const importModules = Promise.all([
+//     import(`containers/${componentName}/reducer`),
+//     import(`containers/${componentName}/sagas`),
+//     import(`containers/${componentName}`),
+//   ]);
+
+//   const renderRoute = loadModule(cb);
+
+//   importModules.then(([reducer, sagas, component]) => {
+//     injectReducer(reducerMapName, reducer.default);
+//     injectSagas(sagas.default);
+//     renderRoute(component);
+//   });
+
+//   importModules.catch(errorLoading);
+// }
+
 export default function createRoutes(store) {
   // create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store);
@@ -32,15 +51,34 @@ export default function createRoutes(store) {
         importModules.then(([reducer, sagas, component]) => {
           injectReducer('home', reducer.default);
           injectSagas(sagas.default);
-
           renderRoute(component);
         });
 
         importModules.catch(errorLoading);
       },
     }, {
-      path: '/annotator',
-      name: 'annotator',
+      path: '/corpus/:corpusId',
+      name: 'corpus',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/Corpus/reducer'),
+          import('containers/Corpus/sagas'),
+          import('containers/Corpus'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('corpusPage', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
+      path: '/corpus/:id/documents/:id',
+      name: 'doc',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('containers/Annotator/reducer'),
@@ -51,14 +89,35 @@ export default function createRoutes(store) {
         const renderRoute = loadModule(cb);
 
         importModules.then(([reducer, component]) => {
-          injectReducer('annotator', reducer.default);
+          injectReducer('xxx', reducer.default);
           // injectSagas(sagas.default);
           renderRoute(component);
         });
 
         importModules.catch(errorLoading);
       },
-    }, {
+    }, ...['/annotator', '/corpus/:corpusId/documents/:docId', '/corpus/1/annotator'].map(
+      (p)=>({
+        path: p,
+        name: 'annotator',
+        getComponent(nextState, cb) {
+          const importModules = Promise.all([
+            import('containers/Annotator/reducer'),
+            import('containers/Annotator/sagas'),
+            import('containers/Annotator'),
+          ]);
+
+          const renderRoute = loadModule(cb);
+
+          importModules.then(([reducer, sagas, component]) => {
+            injectReducer('annotator', reducer.default);
+            injectSagas(sagas.default);
+            renderRoute(component);
+          });
+
+          importModules.catch(errorLoading);
+        },
+      })), {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {

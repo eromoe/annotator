@@ -1,12 +1,4 @@
-/*
- * HomeConstants
- * Each action has a corresponding type, which the reducer knows and picks up on.
- * To avoid weird typos between the reducer and the actions, we save them as
- * constants here. We prefix them with 'yourproject/YourComponent' so we avoid
- * reducers accidentally picking up actions they shouldn't.
- *
- * Follow this format:
- * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
- */
 
-export const CHANGE_URL = 'boilerplate/Home/CHANGE_URL';
+export const REQUEST_CORPUSES = 'REQUEST_CORPUSES'
+export const REQUEST_CORPUSES_FAILED = 'REQUEST_CORPUSES_FAILED'
+export const RECEIVE_CORPUSES = 'RECEIVE_CORPUSES'

@@ -1,216 +1,169 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- */
 
-import React from 'react';
-import Helmet from 'react-helmet';
+import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
+import NavLink from 'components/NavLink'
+import { makeSelectCorpusList } from './selectors';
 import {
+  Button,
   Card,
   CardHeader,
   CardTitle,
+  CardSubtitle,
+  CardText,
+  CardActions,
+  FormField,
+  Switch,
+  Grid,
+  Cell,
+  ToolbarRow,
+  ToolbarSection,
+  ToolbarTitle,
+  Display1,
+  Fab,
+  Icon,
+  IconToggle,
+  Dialog,
+  DialogHeader,
+  DialogTitle,
+  DialogBody,
+  DialogFooter,
+  List,
+  ListItem,
+  ListDivider,
+  Textfield,
+  GridList,
+  Tile,
   Drawer,
   DrawerSpacer,
   Navigation,
-  Icon,
-  Button,
 } from 'react-mdc-web';
-import { makeSelectInfo, makeSelectLoading, makeSelectError, makeSelectArticles } from 'containers/App/selectors';
-import TaggedText from 'components/TaggedText';
-// import ArticleShortList from 'components/ArticleList';
-import Config from 'config';
 
-// import { Input } from './Elements';
-import { loadInfoByUrl, infoLoaded, loadArticles, renderTaggedText } from '../App/actions';
-import { changeUrl } from './actions';
-import { makeSelectUrl } from './selectors';
+import {
+  REQUEST_CORPUSES,
+} from './constants'
 
+import Header from './header'
 
+import CorpusTable from './tables'
+
+function corpusLink(corpusId) {
+  return `/corpus/${corpusId}`;
+}
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  /**
-   * when initial state url is not null, submit the form to load repos
-   */
-  componentDidMount() {
-
-    if (this.props.url && this.props.url.trim().length > 0) {
-      this.props.onSubmitForm();
-    }
-
-    this.props.onLoadArticles();
-
-  }
-
-  onChangeFocusItem() {
-
-  }
 
   render() {
-
-    const articles = [
+    // const {corpusList } = this.props;
+    const corpusList = [
       {
-        title: 'test title 1 ',
-        url: 'test url 1',
-      },
-      {
-        title: 'test title 2',
-        url: 'test url 2 ',
-      },
-      {
-        title: 'test title 3',
-        url: 'test url 3 ',
+        id:1,
+        name:'111',
+        desc:'2222',
       },
     ];
 
-    const { loading, error, info } = this.props;
-    const {text, tags, tags2 } = info;
-    const urlInfoProps = {
-      loading,
-      error,
-      text,
-      tags,
-    };
-
-    const urlInfoProps2 = {
-      loading,
-      error,
-      text,
-      tags: tags2,
-    };
-
-    console.log('home articles:', articles);
-    console.log('home info:', info);
-
     return (
 
-      <div className="main">
+      <div>
 
-        <Card style={{width: '300px'}}>
-          <CardHeader>
-            <CardTitle>
-              Entity Viewer
-            </CardTitle>
-          </CardHeader>
-        </Card>
+        <Header />
 
+        <div style={{
+          "display": "flex",
+          "boxSizing": "border-box",
+          "flex": 1
+        }}>
 
-        <div className="left-view">
-            {/* <ArticleShortList articles={articles} clickArticle={this.props.onRenderArticleInfo}  /> */}
-             <div className="article-list-view">
-            {
-              articles && articles.map((article) => (
-                <div className="article-list-item" onClick={() => this.props.onRenderArticleInfo(article)}>
-                  <h5 className="article-title">{article.title}</h5>
-                  <p className="article-url" >{article.url}</p>
-                </div>
-              )
-              )
-            }
+          <Helmet
+            title="Corpus"
+            meta={[
+              { name: 'Corpus manager', content: 'Corpus manager' },
+            ]}
+          />
+
+          <Drawer permanent style={{
+            "height": "inherit",
+            "minHeight": "100%"
+          }}>
+            <DrawerSpacer>
+              Corpus
+            </DrawerSpacer>
+            <Navigation className="navigation">
+              <NavLink to={'/'} selected><Icon name='insert_chart'/>Corpus</NavLink>
+              <NavLink to={'/annotator'}><Icon name='library_books'/>Articles</NavLink>
+              <NavLink to={'/annotator'}><Icon name='description'/>Annotator</NavLink>
+              {/* <NavLink to={'#'}><Icon name='art_track'/>Viewer</NavLink>
+              <NavLink to={'#'}><Icon name='local_library'/>Viewer</NavLink>
+              <NavLink to={'#'}><Icon name='developer_board'/>Viewer</NavLink>
+              <NavLink to={'#'}><Icon name='local_offer'/>Viewer</NavLink>
+              <NavLink to={'#'}><Icon name='local_library'/>Viewer</NavLink>
+              <NavLink to={'#'}><Icon name='attachment'/>Marks</NavLink>
+              <NavLink to={'#'}><Icon name='format_list_bulleted'/>Marks</NavLink> */}
+            </Navigation>
+            <DrawerSpacer>
+              Test
+            </DrawerSpacer>
+            <Navigation>
+              <NavLink to={'#test'}><Icon name='featured_play_list'/>Viewer</NavLink>
+              <NavLink to={'#crf'}><Icon name='format_list_bulleted'/>Crf</NavLink>
+            </Navigation>
+          </Drawer>
+
+          <div style={{
+            "padding": "16px",
+            "flex": "1"
+          }}>
+            <ToolbarRow>
+              <ToolbarSection align="start">
+                <Textfield
+                  placeholder="搜索"
+                  onChange={({target : {value : keyword}}) => {
+                    this.setState({ keyword })
+                  }}
+                />
+              </ToolbarSection>
+              <ToolbarSection align="end">
+                <Button raised primary>搜索</Button>
+              </ToolbarSection>
+            </ToolbarRow>
+
+            <CorpusTable corpusList={corpusList} />
+
           </div>
-        </div>
-        <div className="main-view">
-          <article className="entity-viewer">
-            <Helmet
-              title="Home Page"
-              meta={[
-                { name: 'description', content: 'annotator viewer' },
-              ]}
-            />
-            <div>
-              <section>
-                <h2>
-                  Entity Viewer
-                </h2>
-              </section>
-              <section>
-                <form className="view-form" onSubmit={this.props.onSubmitform}>
-                  <label htmlFor="UrlInput">
-                    <input
-                      id="UrlInput"
-                      className="url-input"
-                      type="text"
-                      placeholder=""
-                      value={this.props.info.url}
-                      onChange={this.props.onChangeUrl}
-                    />
-                  </label>
-                  <button className="waves-effect waves-light url-submit btn"  type="submit">提交</button>
-                </form>
-                <div>
-                  <h3>基础实体</h3>
-                  <TaggedText {...urlInfoProps} />
-                </div>
-                <hr />
-                <div>
-                  <h3>筛选后的概念实体</h3>
-                  <TaggedText {...urlInfoProps2} />
-                </div>
-              </section>
-            </div>
-          </article>
-        </div>
-      </div>
 
+        </div>
+
+      </div>
     );
   }
 }
 
 HomePage.propTypes = {
-  loading: React.PropTypes.bool,
-  error: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.bool,
-  ]),
-  info: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.bool,
-  ]),
-  articles: React.PropTypes.oneOfType([
-    React.PropTypes.array,
-    React.PropTypes.bool,
-  ]),
-  onSubmitForm: React.PropTypes.func,
-  // url: React.PropTypes.string,
-  onChangeUrl: React.PropTypes.func,
-  onRenderArticleInfo: React.PropTypes.func,
-  onLoadArticles: React.PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
 };
 
-    // console.log('RootNode openNode')
-    // const {info, actions} = this.props
-    // console.log('RootNode', info)
-    // console.log('RootNode actions', actions)
-    // actions.openNode(info.path)
+const mapStateToProps = createStructuredSelector({
+  corpusList: makeSelectCorpusList(),
+});
 
-
-export function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
-    onLoadArticles: () => dispatch(loadArticles()),
-    onChangeUrl: (evt) => dispatch(changeUrl(evt.target.value)),
-    onRenderArticleInfo: (article) => {
-      // home's action, so here, article map to info is in home's scope, so App.selectors.makeSelectInfo can not get it
-      dispatch(renderTaggedText(article));
-      console.log(article.url);
-      dispatch(changeUrl(article.url));
-      // dispatch(loadInfoByUrl());
-    },
-    onSubmitForm: (evt) => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadInfoByUrl());
-    },
+    dispatch,
+    requestCorpusList: (pageSize, pageNum) =>
+    { type:REQUEST_CORPUSES, pageSize, pageNum },
   };
 }
 
-const mapStateToProps = createStructuredSelector({
-  info: makeSelectInfo(),
-  url: makeSelectUrl(),
-  articles: makeSelectArticles(),
-  loading: makeSelectLoading(),
-  error: makeSelectError(),
-});
+const ConnectedHomePage = connect(mapStateToProps, mapDispatchToProps)(HomePage);
 
-// Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+ConnectedHomePage.defaultProps = {
+  corpusList: [],
+  pageNum:1,
+  pageSize:10,
+}
+
+
+export default ConnectedHomePage

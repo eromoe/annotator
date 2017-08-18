@@ -271,7 +271,6 @@ export class AnnotatorPane extends React.Component {
   }
 }
 
-
 const Annotator = connect(mapStateToProps, mapDispatchToProps)(AnnotatorPane)
 
 export default Annotator;

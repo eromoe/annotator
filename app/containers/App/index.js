@@ -10,11 +10,10 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
 import NavLink from 'components/NavLink'
-import Header from 'components/Header';
+// import Header from 'components/Header';
 import Footer from 'components/Footer';
 import withProgressBar from 'components/ProgressBar';
 
-// import 'styles/main.css';
 
 import {
   Card,
@@ -27,17 +26,7 @@ import {
 } from 'react-mdc-web';
 
 import 'styles/main.scss';
-// import 'material-components-web/dist/material-components-web.min.css';
 
-
-// const AppWrapper = styled.div`
-//   max-width: calc(1468px + 16px * 2);
-//   margin: 0 auto;
-//   display: flex;
-//   min-height: 100%;
-//   padding: 0 16px;
-//   flex-direction: column;
-// `;
 
 export function App(props) {
 
@@ -46,60 +35,14 @@ export function App(props) {
   return (
     <div id="app">
       <Helmet
-        titleTemplate="%s - test"
-        defaultTitle="Annotator Viewer"
+        titleTemplate="Textminer - %s"
+        defaultTitle="Annotator"
         meta={[
-          { name: 'description', content: 'Annotator Viewer' },
+          { name: 'description', content: 'Annotator' },
         ]}
       />
 
-      <Header />
-
-      <div style={{
-        "display": "flex",
-        "boxSizing": "border-box",
-        "flex": 1
-      }}>
-
-
-        <Drawer permanent style={{
-          "height": "inherit",
-          "minHeight": "100%"
-        }}>
-          <DrawerSpacer>
-            Corpus
-          </DrawerSpacer>
-          <Navigation>
-
-            <NavLink to={'/annotator'}><Icon name='insert_chart'/>Articles</NavLink>
-            <NavLink to={'/'}><Icon name='library_books'/>Viewer</NavLink>
-            <NavLink to={'/annotator'}><Icon name='description'/>Annotator</NavLink>
-            <NavLink to={'#'}><Icon name='art_track'/>Viewer</NavLink>
-            <NavLink to={'#'}><Icon name='local_library'/>Viewer</NavLink>
-            <NavLink to={'#'}><Icon name='developer_board'/>Viewer</NavLink>
-            <NavLink to={'#'}><Icon name='local_offer'/>Viewer</NavLink>
-            <NavLink to={'#'}><Icon name='local_library'/>Viewer</NavLink>
-
-            <NavLink to={'#'}><Icon name='attachment'/>Marks</NavLink>
-            <NavLink to={'#'}><Icon name='format_list_bulleted'/>Marks</NavLink>
-          </Navigation>
-          <DrawerSpacer>
-            Test
-          </DrawerSpacer>
-          <Navigation>
-            <NavLink to={'#'}><Icon name='featured_play_list'/>Viewer</NavLink>
-            <NavLink to={'#'}><Icon name='format_list_bulleted'/>Crf</NavLink>
-          </Navigation>
-        </Drawer>
-
-        <div style={{
-          "padding": "16px",
-          "flex": "1"
-        }}>
-          {React.Children.toArray(props.children)}
-        </div>
-
-      </div>
+      {React.Children.toArray(props.children)}
 
       {/*<Footer />*/}
 

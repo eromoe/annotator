@@ -11,13 +11,8 @@ const makeSelectUrl = () => createSelector(
   (homeState) => homeState.get('url')
 );
 
-const makeSelectCorpusList = () => createSelector(
-  selectHome,
-  (substate) => substate.get('corpuses')
-);
-
 
 export {
   selectHome,
-  makeSelectCorpusList,
+  makeSelectUrl,
 };

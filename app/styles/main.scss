@@ -1,7 +1,7 @@
 // My main Sass file.
-$mdc-theme-primary: #9c27b0;
-$mdc-theme-accent: #76ff03;
-$mdc-theme-background: #fff;
+// $mdc-theme-primary: #9c27b0;
+// $mdc-theme-accent: #76ff03;
+// $mdc-theme-background: #fff;
 
 @import "material-components-web/material-components-web";
 @import "./_color";
@@ -93,6 +93,46 @@ html, body {
 
 }
 
+
+.layout{
+  display: flex;
+  box-sizing: border-box;
+  flex: 1;
+
+  .sidebar-left{
+    height: inherit;
+    min-height: 100%;
+  }
+
+  .content{
+    padding: 16px;
+    flex: 1;
+  }
+
+}
+
+
+
+.navigation{
+  .active{
+
+  }
+}
+
+.table{
+  .table-header{
+    border-bottom: 1px solid #ccc;
+  }
+
+  .table-row{
+    border-bottom: 1px solid #ccc;
+  }
+
+  .table-row:last-child{
+    border-bottom: 0px;
+  }
+
+}
 
 
 
